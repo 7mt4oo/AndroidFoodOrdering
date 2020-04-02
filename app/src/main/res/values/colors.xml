@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFA544</color>
+    <color name="colorPrimaryDark">#FFA544</color>
+    <color name="colorAccent">#FFA544</color>
+    <color name="colorPrimaryLight">#FFA544</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorDivider">#FFA544</color>
+    <color name="colorBorder">#a7a4a4</color>
+    <color name="colorExtra">#fffac1</color>
+    <color name="colorBar">#243911</color>
+    <color name="button_selectorcolor">#9E9E9E</color>
+    <color name="white_greyish">#EEEEEE</color>
+
+</resources>
