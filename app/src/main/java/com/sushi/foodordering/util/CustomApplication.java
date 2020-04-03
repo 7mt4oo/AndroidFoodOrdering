@@ -21,6 +21,7 @@ public class CustomApplication extends Application {
         builder = new GsonBuilder();
         gson = builder.create();
         shared = new CustomSharedPreference(getApplicationContext());
+        PrefUtils.getInstance().init(this);
     }
 
     public CustomSharedPreference getShared(){
