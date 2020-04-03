@@ -87,6 +87,7 @@
     <string name="contact_information">Contact Information</string>
     <string name="email">Email</string>
     <string name="server_client_id">977422220025-kmaehuo8l2rhsh1b6uotukh2nol7prbt.apps.googleusercontent.com</string>
+    <string name="loading">Loading...</string>
 
     <string name="havanarestaurant_yahoo_com">havanarestaurant@yahoo.com</string>
     <string name="view_detail">View details</string>

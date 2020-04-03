@@ -8,44 +8,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:977422220025:android:0bfb461c65c362fb41c028",
-        "android_client_info": {
-          "package_name": "com.inducesmile.androidloginsystem"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "977422220025-0ac2tsctmjdbgc4v1jpmda58s8848cap.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.inducesmile.androidloginsystem",
-            "certificate_hash": "56802c38cc57b3ebe67d2f11cf140c05dcee4d1e"
-          }
-        },
-        {
-          "client_id": "977422220025-knukgita56sl0i2mopurjpllk1uhj5e5.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBtnddobyXgo9oVDWCi-KYIp987RIr4dbs"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "977422220025-knukgita56sl0i2mopurjpllk1uhj5e5.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:977422220025:android:3d9697556aa5025941c028",
+        "mobilesdk_app_id": "1:977422220025:android:ba6249bc3d8d69f441c028",
         "android_client_info": {
           "package_name": "com.sushi.foodordering"
         }
@@ -73,7 +36,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "977422220025-knukgita56sl0i2mopurjpllk1uhj5e5.apps.googleusercontent.com",
+              "client_id": "977422220025-pr7sa5p9odmet7sp7t3ev7fi4nde429v.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
