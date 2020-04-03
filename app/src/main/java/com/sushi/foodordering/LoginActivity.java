@@ -1,6 +1,5 @@
 package com.sushi.foodordering;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -15,7 +14,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,19 +22,10 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
-import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.OptionalPendingResult;
-import com.google.android.gms.common.api.ResultCallback;
 import com.google.gson.Gson;
 import com.sushi.foodordering.entities.LoginObject;
 import com.sushi.foodordering.network.GsonRequest;
@@ -49,7 +38,8 @@ import com.sushi.foodordering.util.PrefUtils;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginActivity extends AppCompatActivity  implements GoogleApiClient.OnConnectionFailedListener {
+public class LoginActivity extends AppCompatActivity
+{
 
     private static final String TAG = LoginActivity.class.getSimpleName();
 
@@ -166,6 +156,8 @@ public class LoginActivity extends AppCompatActivity  implements GoogleApiClient
 
     private void isUserLogged() {
         boolean isUserLogged = PrefUtils.getInstance().getBoolean(Keys.IS_LOGGED.name(), false);
+        Log.d(TAG, "isUserLogged: " +  isUserLogged);
+
         if (isUserLogged){
             //navigate to MainActivity
             Intent intentMain = new Intent(LoginActivity.this, MainActivity.class);
@@ -237,96 +229,60 @@ public class LoginActivity extends AppCompatActivity  implements GoogleApiClient
             Intent intentMain = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intentMain);
         }
+//
+////google
+//        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//                .requestEmail()
+//                .build();
+//        googleApiClient = new GoogleApiClient.Builder(this)
+//                .enableAutoManage(this, this)
+//                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+//                .build();
+//        googleSignInButton = (SignInButton) findViewById(R.id.sign_in_button);
+//        googleSignInButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
+//                startActivityForResult(intent, RC_SIGN_IN);
+//
+//            }
+//        });
+////
+//        //Facebook login
+//        mCallbackManager = CallbackManager.Factory.create();
+//        LoginButton mLoginButton = (LoginButton) findViewById(R.id.fb_login_button);
+//        assert mLoginButton != null;
+//        mLoginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+//            @Override
+//            public void onSuccess(LoginResult loginResult) {
+//
+//
+//                Intent intentMain = new Intent(LoginActivity.this, MainActivity.class);
+//                startActivity(intentMain);
+//
+//            }
+//
+//            @Override
+//            public void onCancel() {
+//
+//            }
+//
+//            @Override
+//            public void onError(FacebookException error) {
+//
+//            }
+//        });
+//
 
-//google
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-        googleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this, this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
-        googleSignInButton = (SignInButton) findViewById(R.id.sign_in_button);
-        googleSignInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
-                startActivityForResult(intent, RC_SIGN_IN);
-
-            }
-        });
-
-        //Facebook login
-        mCallbackManager = CallbackManager.Factory.create();
-        LoginButton mLoginButton = (LoginButton) findViewById(R.id.fb_login_button);
-        assert mLoginButton != null;
-        mLoginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
+    }
 
 
-                Intent intentMain = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intentMain);
 
-            }
-
-            @Override
-            public void onCancel() {
-
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-
-            }
-        });
 
 
     }
 
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
-    }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RC_SIGN_IN) {
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            handleSignInResult(result);
-        }
-    }
 
-    private void handleSignInResult(GoogleSignInResult result) {
-        if (result.isSuccess()) {
-            gotoactivity();
-        } else {
-            Toast.makeText(getApplicationContext(), "Sign in cancel", Toast.LENGTH_LONG).show();
-        }
-    }
 
-    private void gotoactivity() {
-        Intent intentMain = new Intent(LoginActivity.this, MainActivity.class);
-        startActivity(intentMain);
-    }
-
-    @Override
-    protected void onStart()
-    {
-        super.onStart();
-        OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(googleApiClient);
-        if (opr.isDone()) {
-            GoogleSignInResult result = opr.get();
-            handleSignInResult(result);
-        } else {
-            opr.setResultCallback(new ResultCallback<GoogleSignInResult>() {
-                @Override
-                public void onResult(@NonNull GoogleSignInResult googleSignInResult) {
-                    handleSignInResult(googleSignInResult);
-                }
-            });
-        }
-    }
-
-}

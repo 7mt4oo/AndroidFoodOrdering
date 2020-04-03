@@ -3,17 +3,15 @@ package com.sushi.foodordering;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.gson.Gson;
-import com.sushi.foodordering.entities.LoginObject;
-import com.sushi.foodordering.util.CustomApplication;
+import com.sushi.foodordering.util.Keys;
+import com.sushi.foodordering.util.PrefUtils;
 
 public class IntroActivity extends AppCompatActivity {
 
@@ -45,17 +43,25 @@ public class IntroActivity extends AppCompatActivity {
             public void run() {
                 try {
                     sleep(4000);
-                    Intent intent = new Intent(getApplicationContext(), LoginOptionActivity.class);
-                    startActivity(intent);
-                    finish();
+                    isUserLogged();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+
             }
         };
         myThread.start();
     }
+    private void isUserLogged() {
+        boolean isUserLogged = PrefUtils.getInstance().getBoolean(Keys.IS_LOGGED.name(), false);
+        Log.d(TAG, "isUserLogged: " +  isUserLogged);
 
+        if (isUserLogged){
+            //navigate to MainActivity
+            Intent intentMain = new Intent(this, MainActivity.class);
+            startActivity(intentMain);
+        }
+    }
 
 }
 

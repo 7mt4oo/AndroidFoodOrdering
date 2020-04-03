@@ -29,6 +29,8 @@ import com.sushi.foodordering.Fragment.OrderHistoryFragment;
 import com.sushi.foodordering.Fragment.ProfileFragment;
 import com.sushi.foodordering.util.CustomApplication;
 import com.sushi.foodordering.util.DrawCart;
+import com.sushi.foodordering.util.Keys;
+import com.sushi.foodordering.util.PrefUtils;
 import com.sushi.notification.NotificationActivity;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
@@ -100,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     //remove user data from shared preference
                     SharedPreferences mShared = ((CustomApplication)getApplication()).getShared().getInstanceOfSharedPreference();
                     mShared.edit().clear().apply();
+                    PrefUtils.getInstance().storeBoolean(Keys.IS_LOGGED.name(), false);
 
                     //Navigate to login page
                     Intent loginPageIntent = new Intent(MainActivity.this, LoginActivity.class);
@@ -126,8 +129,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             drawer.closeDrawer(GravityCompat.START);
         } else {
             //super.onBackPressed();
-            Intent optionIntent = new Intent(MainActivity.this, LoginOptionActivity.class);
-            startActivity(optionIntent);
+            finish();
         }
     }
 
