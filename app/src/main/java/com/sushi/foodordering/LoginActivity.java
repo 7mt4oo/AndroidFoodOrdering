@@ -43,6 +43,8 @@ import com.sushi.foodordering.network.GsonRequest;
 import com.sushi.foodordering.network.VolleySingleton;
 import com.sushi.foodordering.util.CustomApplication;
 import com.sushi.foodordering.util.Helper;
+import com.sushi.foodordering.util.Keys;
+import com.sushi.foodordering.util.PrefUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -92,7 +94,7 @@ public class LoginActivity extends AppCompatActivity  implements GoogleApiClient
         }
 
 
-        prefs = getSharedPreferences(Helper.SHARED_PREF, Context.MODE_PRIVATE);
+/*        prefs = getSharedPreferences(Helper.SHARED_PREF, Context.MODE_PRIVATE);
         String mEmail = prefs.getString(Helper.EMAIL, "");
         String facebookLogin = prefs.getString(Helper.FACEBOOK_ID, "");
         String googleLogin = prefs.getString(Helper.GOOGLE_ID, "");
@@ -105,11 +107,13 @@ public class LoginActivity extends AppCompatActivity  implements GoogleApiClient
         if (isLogin) {
             Intent intentMain = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intentMain);
-        }
+        }*/
 
 
-        isUserLoggedIn();
 
+//        isUserLoggedIn();
+
+        isUserLogged();
         errorDisplay = (TextView) findViewById(R.id.login_error);
         signInformation = (TextView) findViewById(R.id.sign_in_notice);
         signInformation.setText(Helper.NEW_ACCOUNT);
@@ -160,6 +164,15 @@ public class LoginActivity extends AppCompatActivity  implements GoogleApiClient
         });
     }
 
+    private void isUserLogged() {
+        boolean isUserLogged = PrefUtils.getInstance().getBoolean(Keys.IS_LOGGED.name(), false);
+        if (isUserLogged){
+            //navigate to MainActivity
+            Intent intentMain = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intentMain);
+        }
+    }
+
     private void authenticateUserInRemoteServer(String email, String password) {
         Map<String, String> params = new HashMap<String, String>();
         params.put(Helper.EMAIL, email);
@@ -189,6 +202,8 @@ public class LoginActivity extends AppCompatActivity  implements GoogleApiClient
                     Log.d(TAG, "Json Response " + response.getLoggedIn());
                     if (response.getLoggedIn().equals("1")) {
                         //save login data to a shared preference
+                        //user is logged
+                        PrefUtils.getInstance().storeBoolean(Keys.IS_LOGGED.name(), true);
                         String userData = ((CustomApplication) getApplication()).getGsonObject().toJson(response);
                         ((CustomApplication) getApplication()).getShared().setUserData(userData);
 
