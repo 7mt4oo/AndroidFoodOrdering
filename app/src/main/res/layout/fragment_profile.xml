@@ -139,6 +139,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/_4sdp">
 
+
         <Button
             android:id="@+id/edit_profile"
             android:layout_width="0dp"
@@ -155,14 +156,15 @@
             android:id="@+id/edit_cart"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/colorWhite"
-            android:layout_marginLeft="@dimen/_4sdp"
             android:layout_marginStart="@dimen/_4sdp"
+            android:layout_marginLeft="@dimen/_4sdp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
             android:text="@string/view_hot_deals"
-            android:textSize="@dimen/_12sdp"
-            android:background="@color/colorPrimary"/>
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_12sdp" />
 
     </LinearLayout>
+
 
 </RelativeLayout>
