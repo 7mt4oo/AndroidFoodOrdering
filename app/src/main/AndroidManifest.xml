@@ -73,9 +73,9 @@
             </intent-filter>
         </service>
 
-        <activity android:name="com.sushi.foodordering.OrderListActivity" />
-        <meta-data android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
+<!--        <activity android:name="com.sushi.foodordering.OrderListActivity" />-->
+<!--        <meta-data android:name="com.facebook.sdk.ApplicationId"-->
+<!--            android:value="@string/facebook_app_id"/>-->
 
     </application>
 

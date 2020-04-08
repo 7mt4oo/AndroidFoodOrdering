@@ -160,8 +160,8 @@
     <string name="push_notifications">Push Notification Settings</string>
     <string name="past_orders">View Past Order</string>
 
-    <string name="facebook_app_id">1098885033641372</string>
-    <string name="fb_login_protocol_scheme">fb1098885033641372</string>
+<!--    <string name="facebook_app_id">1098885033641372</string>-->
+<!--    <string name="fb_login_protocol_scheme">fb1098885033641372</string>-->
     <string name="email_login_error_message">Email field is empty, try again</string>
     <string name="recovery">Enter email for your account recovery</string>
     <string name="login_button">LOG IN</string>

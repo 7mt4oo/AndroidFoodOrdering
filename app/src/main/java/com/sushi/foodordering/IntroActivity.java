@@ -60,6 +60,9 @@ public class IntroActivity extends AppCompatActivity {
             //navigate to MainActivity
             Intent intentMain = new Intent(this, MainActivity.class);
             startActivity(intentMain);
+        }else{
+            Intent in = new Intent(this, LoginActivity.class);
+            startActivity(in);
         }
     }
 

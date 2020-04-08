@@ -123,29 +123,6 @@
 
 
     </LinearLayout>
-    <LinearLayout
-        android:id="@+id/social_wrapper"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/login_error"
-        android:layout_centerHorizontal="true"
-        android:orientation="horizontal">
 
-
-        <com.facebook.login.widget.LoginButton
-            android:id="@+id/fb_login_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp" />
-
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/sign_in_button"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_30sdp"
-            android:layout_weight="1"/>
-
-    </LinearLayout>
 
 </LinearLayout>
