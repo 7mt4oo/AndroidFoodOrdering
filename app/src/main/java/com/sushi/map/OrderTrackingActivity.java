@@ -1,16 +1,16 @@
 package com.sushi.map;
 
-import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
-import androidx.fragment.app.FragmentActivity;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.fragment.app.FragmentActivity;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -58,7 +58,6 @@ public class OrderTrackingActivity extends FragmentActivity implements OnMapRead
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_tracking);
 
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         distanceValue = (TextView)findViewById(R.id.order_distance);
         durationValue = (TextView)findViewById(R.id.order_duration);
@@ -75,12 +74,13 @@ public class OrderTrackingActivity extends FragmentActivity implements OnMapRead
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng restaurant = new LatLng(55.851903, 13.660413);
+        LatLng restaurant = getUserLocationFromAddress("56 Ahmed Fakhry Cairo, Egypt");
+        Log.d(TAG, "onMapReady: Resturant location: " + restaurant.toString());
         mMap.addMarker(new MarkerOptions().position(restaurant).title("Restaurant"));
         addCameraToMap(restaurant);
 
         LatLng  user = getUserLocationFromAddress("Nygatan 11 24231 horby, Sweden");
-        //mMap.addMarker(new MarkerOptions().position(user).title("Delivery Address"));
+        mMap.addMarker(new MarkerOptions().position(user).title("Delivery Address"));
         createMarker(user);
 
         String directionPath = Constant.getUrl(String.valueOf(restaurant.latitude), String.valueOf(restaurant.longitude),
@@ -154,6 +154,7 @@ public class OrderTrackingActivity extends FragmentActivity implements OnMapRead
             for(LegsObject leg : legs){
                 String routeDistance = leg.getDistance().getText();
                 String routeDuration = leg.getDuration().getText();
+
                 setRouteDistanceAndDuration(routeDistance, routeDuration);
                 List<StepsObject> steps = leg.getSteps();
 
