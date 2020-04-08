@@ -46,7 +46,6 @@ public class OrderTrackingActivity extends FragmentActivity implements OnMapRead
     private static final String TAG = OrderTrackingActivity.class.getSimpleName();
 
     private GoogleMap mMap;
-
     private TextView distanceValue;
     private TextView durationValue;
     private TextView timer;
